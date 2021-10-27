@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -81,6 +82,7 @@ public class AccountService implements IAccountService{
         account.setPhoneNumber(formCreateAccount.getPhoneNumber());
         account.setAddress(formCreateAccount.getAddress());
         account.setUsername(formCreateAccount.getUsername());
+        account.setCreateDate(LocalDateTime.now());
 
         PasswordEncoder encoder = new AuthenticationConfig().passwordEncoder();
         String encodedPassword = encoder.encode(formCreateAccount.getPassword());
