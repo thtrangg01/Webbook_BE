@@ -42,7 +42,7 @@ public class AccountController {
         return new ResponseEntity(new AccountDTO(account), HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteAccountById(@PathVariable(name = "id") int id){
         if (id == 1){
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
@@ -53,7 +53,7 @@ public class AccountController {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity updateAccount(@PathVariable(name = "id") int id, @RequestBody(required = true) FormUpdateAccount formUpdateAccount){
         if (accountService.updateAccount(id, formUpdateAccount)){
             return new ResponseEntity(HttpStatus.ACCEPTED);
@@ -61,14 +61,13 @@ public class AccountController {
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
-    public ResponseEntity createAccount(@RequestBody(required = true) FormCreateAccount formCreateAccount){
-        Account account = accountService.createAccount(formCreateAccount);
-        if (account == null){
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity(new AccountDTO(account), HttpStatus.CREATED);
-    }
-
-
+//    @PostMapping("/create")
+//    public ResponseEntity createAccount(@RequestBody(required = true) FormCreateAccount formCreateAccount){
+//        Account account = accountService.createAccount(formCreateAccount);
+//        if (account == null){
+//            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+//        }
+//        return new ResponseEntity(new AccountDTO(account), HttpStatus.CREATED);
+//    }
+//
 }
