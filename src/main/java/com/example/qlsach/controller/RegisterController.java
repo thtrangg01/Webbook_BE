@@ -14,6 +14,7 @@ import java.security.Principal;
 
 @RequestMapping("/register")
 @RestController
+@CrossOrigin("*")
 public class RegisterController {
 
     @Autowired
